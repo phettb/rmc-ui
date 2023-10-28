@@ -1,0 +1,52 @@
+
+<section>
+    <h1 class="title">Available Material</h1>
+    <div class="columns is-multiline">
+        <div class="column"  *ngFor="let rawMat of rawMatListActive; index as i">
+            <div class="card">
+                <div class="card-image">
+                  <figure class="image">
+                    <img [src]="imageActiveToShow[i]" alt="Place image title" *ngIf="!isImageLoading;">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                        <a routerLink="/detail/{{rawMat.id}}" class="is-success"><p class="title is-4">{{rawMat.name}}</p></a>
+                        <p class="subtitle is-6">{{rawMat.rawmatid}}</p>
+                    </div>
+                  </div>
+                </div>
+                <footer class="card-footer">
+                    <a class="card-footer-item"><button class="button is-danger" (click)="delete(rawMat.id,rawMat.imageid)">Delete</button></a>
+                    <a routerLink="/form/{{rawMat.id}}" class="card-footer-item"><button class="button is-warning">Edit</button></a>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h1 class="title">Not Available Material</h1>
+    <div class="columns is-multiline">
+        <div class="column"  *ngFor="let rawMat of rawMatListNonActive; index as i">
+            <div class="card">
+                <div class="card-image">
+                  <figure class="image">
+                    <img [src]="imageNonActiveToShow[i]" alt="Place image title" *ngIf="!isImageLoading;">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                        <a routerLink="/detail/{{rawMat.id}}" class="is-success"><p class="title is-4">{{rawMat.name}}</p></a>
+                        <p class="subtitle is-6">{{rawMat.rawmatid}}</p>
+                    </div>
+                  </div>
+                </div>
+                <footer class="card-footer">
+                    <a class="card-footer-item"><button class="button is-danger" (click)="delete(rawMat.id,rawMat.imageid)">Delete</button></a>
+                    <a routerLink="/form/{{rawMat.id}}" class="card-footer-item"><button class="button is-warning">Edit</button></a>
+                </footer>
+              </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,27 @@
+<section>
+    <div class="card" *ngIf="rawMat">
+        <div class="card-image">
+          <figure class="image">
+            <img [src]="imageToShow" alt="Place image title" *ngIf="!isImageLoading;">
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">{{rawMat.name}}</p>
+              <p class="subtitle is-6">{{rawMat.rawmatid}}</p>
+            </div>
+          </div>
+      
+          <div class="content">
+            <p>{{rawMat.type}}</p>
+            <p>{{ checkStatus(rawMat.status) }}</p>
+            <div *ngIf="rawMat.detail">
+                <ul *ngFor="let d of rawMat.detail">
+                    <li>{{d.key}} : {{d.value}}</li>
+                </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+</section>

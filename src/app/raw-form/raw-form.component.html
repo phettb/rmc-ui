@@ -1,0 +1,102 @@
+<section>
+    <h1>Add Material</h1>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Name</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+              <input class="input" type="text" placeholder="Name" [(ngModel)]="rawMat.name" name="name">
+          </div>
+          <div class="field-label is-normal">
+            <label class="label">No.</label>
+          </div>
+          <div class="field">
+            <input class="input" type="text" placeholder="Material No." [(ngModel)]="rawMat.rawmatid" name="rawmatid">
+          </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Type</label>
+        </div>
+        <div class="field-body">
+          <div class="field is-narrow">
+            <div class="control">
+              <div class="select is-fullwidth">
+                <select [(ngModel)]="rawMat.type" name="type">
+                  <option *ngFor="let type of types" [value]="type">{{type}}</option>
+                </select>
+              </div>
+            </div>
+          </div>      
+        </div>
+    </div>
+    <div class="field is-horizontal" *ngIf="edited">
+            <div class="field-body">
+                <label class="checkbox">
+                    <input type="checkbox" [(ngModel)]="rawMat.status">
+                    Status
+                </label>
+            </div>
+    </div>
+    <hr>
+    <h1>Image</h1>
+    <div class="field is-horizontal">
+        <div class="file has-name">
+            <label class="file-label">
+                <input class="file-input" type="file" name="image" (change)="onFileSelected($event)" accept="image/*">
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Choose a file…
+                  </span>
+                </span>
+                <span class="file-name">
+                  {{selectedImage?.name}}
+                </span>
+            </label>
+          </div>
+    </div>  
+    <div class="field is-horizontal">
+        <div *ngIf="imageUrl" class="image-preview">
+            <img [src]="imageUrl" alt="Preview">
+        </div>
+        <div *ngIf="!imageUrl && !isImageLoading" class="image-preview">
+            <img [src]="imageToShow" alt="Place image title" *ngIf="!isImageLoading;">
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-body">
+            <button class="button is-primary" *ngIf="selectedImage" (click)="onUpload()">Upload Image</button>
+        </div>
+    </div>   
+    <hr>
+    <h3>Detail</h3>
+    <div class="buttons">
+        <button class="button is-primary" (click)="addDetail()">+</button>
+        <button class="button is-danger" (click)="removeDetail()">-</button>
+    </div>
+    <div class="field is-horizontal" *ngFor="let d of rawMat.detail">
+        <div class="field-label is-normal">
+            <label class="label">key</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+                <input class="input" type="text" placeholder="Name" [(ngModel)]="d.key" name="key">
+            </div>
+            <div class="field-label is-normal">
+              <label class="label">Value</label>
+            </div>
+            <div class="field">
+              <input class="input" type="text" placeholder="Material No." [(ngModel)]="d.value" name="value">
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="button is-primary" (click)="create()" *ngIf="!edited">Save</button>
+        <button class="button is-warning" (click)="update()" *ngIf="edited">Update</button>
+    </div>
+</section>
